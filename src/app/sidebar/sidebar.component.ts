@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Signal, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { StyleClassModule } from 'primeng/styleclass';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,4 +13,13 @@ import { StyleClassModule } from 'primeng/styleclass';
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
-export class SidebarComponent {}
+export class SidebarComponent implements OnInit {
+  userEmail = signal('');
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
+    const data = this.authService.getData();
+    this.userEmail.set(data?.email ?? 'Not Found');
+  }
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -21,5 +21,11 @@ export class AuthService {
   logout(): void {
     localStorage.removeItem('token');
     this.router.navigate(['/sign-in']);
+  }
+
+  getData(): any {
+    const token = localStorage.getItem('token');
+    // Add additional token validation logic here if needed
+    return token ? JSON.parse(atob(token.split('.')[1])) : null;
   }
 }

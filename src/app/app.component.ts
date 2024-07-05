@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit, Signal, signal } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -20,6 +20,10 @@ import { MessagesModule } from 'primeng/messages';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   constructor(public authService: AuthService) {}
+
+  ngOnInit(): void {
+    
+  }
 }
