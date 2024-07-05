@@ -1,3 +1,19 @@
 import { Routes } from '@angular/router';
+import { SignInComponent } from './auth/sign-in/sign-in.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { SignUpComponent } from './auth/sign-up/sign-up.component';
+import { ProjectsComponent } from './projects/projects.component';
+import { SettingsComponent } from './settings/settings.component';
+import { ProfileComponent } from './profile/profile.component';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'projects', component: ProjectsComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: 'profile', component: ProfileComponent },
+  { path: '**', component: PageNotFoundComponent }
+];

@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+@layer reset, primeng;
+
+/* Reset CSS */
+@layer reset {
+    a {
+        text-decoration: none;
+    }
+}
+
+.active-route {
+    background-color: var(--teal-100);
+}
