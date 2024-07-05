@@ -1,62 +1,41 @@
 <div class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground ng-star-inserted h-screen">
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div class="text-center mb-5">
-            <img
-                src="assets/logo.svg"
-                alt="Image"
-                height="50"
-                class="mb-3"
-            >
+            <img src="assets/logo.svg" alt="Image" height="50" class="mb-3">
             <div class="text-900 text-3xl font-medium mb-3">Join Us</div>
             <span class="text-600 font-medium line-height-3">Already have an account?</span>
             <a routerLink="/sign-in" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Sign In!</a>
         </div>
-        <div>
-            <label for="email" class="block text-900 font-medium mb-2">Email</label>
-            <input
-                pInputText
-                [(ngModel)]="email"
-                id="email"
-                type="text"
-                placeholder="Email address"
-                class="p-inputtext p-component p-element w-full mb-3"
-            >
-            <label for="password" class="block text-900 font-medium mb-2">Password</label>
-            <input
-                pInputText
-                [(ngModel)]="password"
-                id="password"
-                type="password"
-                placeholder="Password"
-                class="p-inputtext p-component p-element w-full mb-3"
-            >
-            <label for="password2" class="block text-900 font-medium mb-2">Password Confirmation</label>
-            <input
-                pInputText
-                [(ngModel)]="repeatPassword"
-                id="password2"
-                type="password"
-                placeholder="Password Confirmation"
-                class="p-inputtext p-component p-element w-full mb-3"
-            >
-            <!-- <div class="flex align-items-center justify-content-between mb-6">
-                <div class="flex align-items-center">
-                    <p-checkbox inputId="rememberme" class="p-element" [binary]="true" label="Remember me"></p-checkbox>
+        <form [formGroup]="signupForm" (ngSubmit)="signUp()">
+            <div>
+                <label for="email" class="block text-900 font-medium mb-2">Email</label>
+                <input pInputText formControlName="email" id="email" type="text" placeholder="Email address" class="p-inputtext p-component p-element w-full" />
+                <div *ngIf="emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)" class="text-red-500">
+                    <div *ngIf="emailControl?.errors?.['required']">Email is required.</div>
+                    <div *ngIf="emailControl?.errors?.['email']">Enter a valid email.</div>
                 </div>
-                <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
-            </div> -->
-            <button
-                pButton
-                pripple
-                label="Sign In"
-                icon="pi pi-user"
-                class="p-element p-ripple w-full p-button p-component"
-                (click)="signUp()"
-            >
-                <span class="p-button-icon p-button-icon-left pi pi-user" aria-hidden="true"></span>
-                <span class="p-button-label">Sign Up</span>
-                <span class="p-ink"></span>
-            </button>
-        </div>
+                <div class="mb-3"></div>
+
+                <label for="password" class="block text-900 font-medium mb-2">Password</label>
+                <input pInputText formControlName="password" id="password" type="password" placeholder="Password" class="p-inputtext p-component p-element w-full" />
+                <div *ngIf="passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)" class="text-red-500">
+                    <div *ngIf="passwordControl?.errors?.['required']">Password is required.</div>
+                    <div *ngIf="passwordControl?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                </div>
+                <div class="mb-3"></div>
+
+                <label for="password2" class="block text-900 font-medium mb-2">Password Confirmation</label>
+                <input pInputText formControlName="repeatPassword" id="password2" type="password" placeholder="Password Confirmation" class="p-inputtext p-component p-element w-full" />
+                <div *ngIf="signupForm.hasError('notSame') && (repeatPasswordControl?.dirty || repeatPasswordControl?.touched)" class="text-red-500">
+                    Passwords must match.
+                </div>
+                <div class="mb-3"></div>
+
+                <button pButton label="Sign Up" icon="pi pi-user" class="p-element p-ripple w-full p-button p-component mt-5" type="submit">
+                    <span class="p-button-icon p-button-icon-left pi pi-user" aria-hidden="true"></span>
+                    <span class="p-button-label">Sign Up</span>
+                </button>
+            </div>
+        </form>
     </div>
 </div>
