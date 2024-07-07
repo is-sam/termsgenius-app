@@ -4,7 +4,7 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 import { StyleClassModule } from 'primeng/styleclass';
-import { AuthService } from '../auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-sidebar',

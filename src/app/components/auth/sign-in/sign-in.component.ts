@@ -7,9 +7,10 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { InputMaskModule } from 'primeng/inputmask';
 import { InputTextModule } from 'primeng/inputtext';
-import { environment } from '../../../environments/environment';
-import { AuthService } from '../../auth.service';
-import { take } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { AuthService } from '../../../auth/auth.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subject, takeUntil } from 'rxjs';
 
 interface AuthLoginResponse {
   token: string;
@@ -31,15 +32,23 @@ interface AuthLoginResponse {
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
-export class SignInComponent {
+export class SignInComponent implements OnDestroy {
   email: string = '';
   password: string = '';
 
+  private isDesroyed$ = new Subject<void>();
+
   constructor(private http: HttpClient, private authService: AuthService) {}
+
+  ngOnDestroy(): void {
+    this.isDesroyed$.next();
+    this.isDesroyed$.complete();
+  }
 
   signIn(): void {
     console.log('Signing in...', environment.apiEndpoint, this.email, this.password);
     this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/auth/login`, { email: this.email, password: this.password })
+      .pipe(takeUntil(this.isDesroyed$))
       .subscribe({
         next: (response: AuthLoginResponse) => {
           this.authService.login(response.token);

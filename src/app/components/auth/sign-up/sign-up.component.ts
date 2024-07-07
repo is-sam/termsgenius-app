@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { AbstractControlOptions, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { take } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
