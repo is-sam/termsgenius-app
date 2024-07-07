@@ -1,6 +1,5 @@
 <div class="card p-6 surface-ground h-screen">
-    <p-toast />
-    <p-toolbar styleClass="mb-4 gap-2">
+    <p-toolbar styleClass="mb-4 gap-2 border">
         <ng-template pTemplate="left">
             <p-button
                 pRipple
@@ -9,28 +8,6 @@
                 icon="pi pi-plus"
                 class="mr-2"
                 (click)="openNew()" />
-            <!-- <p-button
-                pRipple
-                severity="danger"
-                label="Delete"
-                icon="pi pi-trash"
-                (click)="deleteSelectedProjects()"
-                [disabled]="!selectedProjects || !selectedProjects.length" /> -->
-        </ng-template>
-
-        <ng-template pTemplate="right">
-            <!-- <p-fileUpload
-                mode="basic"
-                accept="image/*"
-                [maxFileSize]="1000000"
-                label="Import"
-                chooseLabel="Import"
-                class="mr-2 inline-block" /> -->
-            <p-button
-                pRipple
-                severity="help"
-                label="Export"
-                icon="pi pi-upload" />
         </ng-template>
     </p-toolbar>
 
@@ -40,8 +17,6 @@
         [rows]="10"
         [paginator]="true"
         [globalFilterFields]="['title']"
-        [tableStyle]="{ 'min-width': '75rem' }"
-        [(selection)]="selectedProjects"
         [rowHover]="true"
         dataKey="id"
     >
@@ -58,25 +33,8 @@
                 </span>
             </div>
         </ng-template>
-        <!-- <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 4rem">
-                    <p-tableHeaderCheckbox />
-                </th>
-                <th pSortableColumn="title" style="min-width:15rem">
-                    Title <p-sortIcon field="title" />
-                </th>
-                <th pSortableColumn="createdAt">
-                    Create At <p-sortIcon field="createdAt" />
-                </th>
-                <th>Actions</th>
-            </tr>
-        </ng-template> -->
         <ng-template pTemplate="body" let-project>
             <tr>
-                <!-- <td>
-                    <p-tableCheckbox [value]="project" />
-                </td> -->
                 <td>
                     {{ project.title }}
                 </td>
@@ -84,20 +42,20 @@
                     {{ project.createdAt | date: 'medium' }}
                 </td>
                 <td>
-                    <p-button 
-                        pRipple 
-                        icon="pi pi-pencil" 
-                        class="mr-2" 
-                        [rounded]="true" 
-                        [outlined]="true" 
-                        severity="success" 
+                    <p-button
+                        pRipple
+                        icon="pi pi-pencil"
+                        class="mr-2"
+                        [rounded]="true"
+                        [outlined]="true"
+                        severity="success"
                         (click)="editProject(project)" />
-                    <p-button 
-                        pRipple 
-                        icon="pi pi-trash" 
-                        severity="danger" 
-                        [rounded]="true" 
-                        [outlined]="true" 
+                    <p-button
+                        pRipple
+                        icon="pi pi-trash"
+                        severity="danger"
+                        [rounded]="true"
+                        [outlined]="true"
                         (click)="deleteProject(project)" />
                 </td>
             </tr>
@@ -106,3 +64,5 @@
 
     <app-project-modal *ngIf="projectDialogVisible" [project]="project" (onHideDialog)="projectDialogVisible = false"></app-project-modal>
 </div>
+
+<p-confirmDialog />

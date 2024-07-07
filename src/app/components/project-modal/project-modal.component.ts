@@ -7,14 +7,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProjectService } from '../../services/project.service';
-import { MessageService } from 'primeng/api';
-import { HttpClient } from '@angular/common/http';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-project-modal',
   standalone: true,
   imports: [CommonModule, FormsModule, DialogModule, ButtonModule, InputTextModule, EditorModule,],
-  providers: [MessageService, HttpClient],
   templateUrl: './project-modal.component.html',
   styleUrl: './project-modal.component.scss'
 })
@@ -25,7 +23,7 @@ export class ProjectModalComponent {
   visible: boolean = true;
   submitted: boolean = false;
 
-  constructor(private projectService: ProjectService, private message: MessageService) {}
+  constructor(private projectService: ProjectService, private message: ToastService) {}
 
   hideDialog() {
     console.log('Hiding dialog...');

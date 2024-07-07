@@ -10,15 +10,13 @@ import { TagModule } from 'primeng/tag';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { RadioButtonModule } from 'primeng/radiobutton';
-import { FormsModule } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
 import { ProjectService } from '../../services/project.service';
 import { InputTextModule } from 'primeng/inputtext';
-import { take } from 'rxjs';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-import { EditorModule } from 'primeng/editor';
 import { ProjectModalComponent } from '../project-modal/project-modal.component';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-projects',
@@ -40,7 +38,6 @@ import { ProjectModalComponent } from '../project-modal/project-modal.component'
     ConfirmDialogModule,
     ProjectModalComponent,
   ],
-  providers: [MessageService, ConfirmationService, ProjectService],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',
 })
@@ -56,9 +53,9 @@ export class ProjectsComponent implements OnInit {
   projectDialogVisible: boolean = false;
 
   constructor(
+    private message: ToastService,
+    private confirmation: ConfirmationService,
     public projectService: ProjectService,
-    private messageService: MessageService,
-    private confirmationService: ConfirmationService
   ) {}
 
   ngOnInit(): void {
@@ -76,13 +73,13 @@ export class ProjectsComponent implements OnInit {
   }
 
   deleteProject(project: Project) {
-    this.confirmationService.confirm({
+    this.confirmation.confirm({
       message: 'Are you sure you want to delete ' + project.title + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         // TODO: implement delete project
-        this.messageService.add({
+        this.message.add({
           severity: 'success',
           summary: 'Successful',
           detail: 'Project Deleted',

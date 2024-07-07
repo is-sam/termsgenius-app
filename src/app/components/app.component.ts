@@ -4,10 +4,10 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { AuthService } from '../auth/auth.service';
-import { MessagesModule } from 'primeng/messages';
-import { ConfirmDialog, ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService } from 'primeng/api';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-root',
@@ -18,11 +18,10 @@ import { ConfirmationService, MessageService } from 'primeng/api';
     RouterLink,
     ButtonModule,
     SidebarComponent,
-    MessagesModule,
     ConfirmDialogModule,
     ToastModule,
   ],
-  providers: [MessageService, ConfirmationService],
+  providers: [ToastService, ConfirmationService],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
