@@ -38,14 +38,14 @@ export class SignUpComponent {
   }
 
   signUp(): void {
-    console.log('Signing up...', this.email, this.password, this.repeatPassword);
+    console.log('Signing up...', this.signupForm.value);
 
     if (!this.signupForm.valid) {
       console.error('Form is invalid');
       return;
     }
 
-    this.http.post<AuthRegisterResponse>(`${environment.apiEndpoint}/api/register`, { email: this.email, password: this.password, repeatPassword: this.repeatPassword })
+    this.http.post<AuthRegisterResponse>(`${environment.apiEndpoint}/auth/register`, this.signupForm.value)
       .pipe(take(1))
       .subscribe((response: AuthRegisterResponse) => {
         if (response.error) {

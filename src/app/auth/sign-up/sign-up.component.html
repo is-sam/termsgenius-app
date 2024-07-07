@@ -31,7 +31,7 @@
                 </div>
                 <div class="mb-3"></div>
 
-                <button pButton label="Sign Up" icon="pi pi-user" class="p-element p-ripple w-full p-button p-component mt-5" type="submit">
+                <button pButton label="Sign Up" icon="pi pi-user" class="p-element p-ripple w-full p-button p-component mt-5" type="submit" [disabled]="!this.signupForm.valid">
                     <span class="p-button-icon p-button-icon-left pi pi-user" aria-hidden="true"></span>
                     <span class="p-button-label">Sign Up</span>
                 </button>

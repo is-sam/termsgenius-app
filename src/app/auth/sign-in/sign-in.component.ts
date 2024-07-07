@@ -39,7 +39,7 @@ export class SignInComponent {
 
   signIn(): void {
     console.log('Signing in...', environment.apiEndpoint, this.email, this.password);
-    this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/api/login`, { username: this.email, password: this.password })
+    this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/auth/login`, { username: this.email, password: this.password })
       .pipe(take(1))
       .subscribe((response: AuthLoginResponse) => {
         this.authService.login(response.token);
