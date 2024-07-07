@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -39,10 +39,14 @@ export class SignInComponent {
 
   signIn(): void {
     console.log('Signing in...', environment.apiEndpoint, this.email, this.password);
-    this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/auth/login`, { username: this.email, password: this.password })
-      .pipe(take(1))
-      .subscribe((response: AuthLoginResponse) => {
-        this.authService.login(response.token);
+    this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/auth/login`, { email: this.email, password: this.password })
+      .subscribe({
+        next: (response: AuthLoginResponse) => {
+          this.authService.login(response.token);
+        },
+        error: (error) => {
+          console.log('Error signing in:', error);
+        }
       });
   }
 }

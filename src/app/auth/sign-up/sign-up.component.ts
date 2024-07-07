@@ -46,16 +46,20 @@ export class SignUpComponent {
     }
 
     this.http.post<AuthRegisterResponse>(`${environment.apiEndpoint}/auth/register`, this.signupForm.value)
-      .pipe(take(1))
-      .subscribe((response: AuthRegisterResponse) => {
-        if (response.error) {
-          console.error('Error signing up:', response.error);
-          return;
-        }
+      .subscribe({
+        next: (response: AuthRegisterResponse) => {
+          if (response.error) {
+            console.log('Error signing up with response:', response.error);
+            return;
+          }
 
-        console.log('Signed up:', response.message);
-        this.router.navigate(['/sign-in']);
-    });
+          console.log('Signed up:', response.message);
+          this.router.navigate(['/sign-in']);
+        },
+        error: (error) => {
+          console.log('Error signing up:', error);
+        }
+      });
   }
 
   checkPasswords(group: FormGroup) {
