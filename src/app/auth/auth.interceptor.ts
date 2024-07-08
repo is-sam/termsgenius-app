@@ -1,13 +1,12 @@
 import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
+import { ToastService } from '../services/toast.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  // const authService = inject(AuthService);
-  // const router = inject(Router);
-  // const message = inject(ToastService);
+  const authService = inject(AuthService);
+  const message = inject(ToastService);
 
   const token = localStorage.getItem('token');
   if (token) {
@@ -19,5 +18,17 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     });
   }
 
-  return next(req);
+  return next(req).pipe(
+    catchError((err) => {
+      if (err instanceof HttpErrorResponse && err.status === 401) {
+        authService.logout();
+        message.add({
+          severity: 'error',
+          summary: 'Session expired',
+          detail: 'Please log in again',
+        });
+      }
+      return throwError(err);
+    })
+  );
 };
