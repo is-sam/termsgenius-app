@@ -36,4 +36,8 @@ export class ProjectService {
   updateProject(project: Project): Observable<Project> {
     return this.http.put<Project>(`${environment.apiEndpoint}/api/projects/${project.id}`, project);
   }
+
+  deleteProject(project: Project): Observable<void> {
+    return this.http.delete<void>(`${environment.apiEndpoint}/api/projects/${project.id}`);
+  }
 }

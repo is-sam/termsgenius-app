@@ -48,6 +48,6 @@
             icon="pi pi-check"
             [text]="true"
             (click)="saveProject()"
-            [disabled]="!loaded || !project.title || !project.content"/>
+            [disabled]="submitted || !loaded || !project.title || !project.content"/>
     </ng-template>
 </p-dialog>

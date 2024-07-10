@@ -78,12 +78,24 @@ export class ProjectsComponent implements OnInit {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // TODO: implement delete project
-        this.message.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Project Deleted',
-          life: 3000,
+        this.projectService.deleteProject(project).subscribe({
+          next: () => {
+            this.projectService.loadProjects();
+            this.message.add({
+              severity: 'success',
+              summary: 'Successful',
+              detail: 'Project Deleted',
+              life: 3000,
+            });
+          },
+          error: (error) => {
+            this.message.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Error deleting project',
+              life: 3000,
+            });
+          }
         });
       },
     });

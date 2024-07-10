@@ -53,6 +53,7 @@ export class ProjectModalComponent implements OnInit {
   }
 
   saveProject() {
+    this.submitted = true;
     const isNew = !this.project.id;
     console.log('Saving project...', isNew, this.project);
 
