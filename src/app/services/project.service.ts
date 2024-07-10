@@ -25,6 +25,10 @@ export class ProjectService {
     return this.http.get<Array<Project>>(`${environment.apiEndpoint}/api/projects`);
   }
 
+  getProject(id: number): Observable<Project> {
+    return this.http.get<Project>(`${environment.apiEndpoint}/api/projects/${id}`);
+  }
+
   saveProject(project: Project): Observable<Project> {
     return this.http.post<Project>(`${environment.apiEndpoint}/api/projects`, project);
   }

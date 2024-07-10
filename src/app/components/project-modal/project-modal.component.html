@@ -4,16 +4,17 @@
     [modal]="true"
     styleClass="p-fluid"
     [maximizable]="true"
-    (onHide)="hideDialog()">
+    (onHide)="hideDialog()"
+    [style]="{ width: '50rem' }">
     <ng-template pTemplate="content">
         <div class="field">
             <label for="name">Title</label>
-            <input 
-                type="text" 
-                pInputText 
-                id="title" 
-                [(ngModel)]="project.title" 
-                required 
+            <input
+                type="text"
+                pInputText
+                id="title"
+                [(ngModel)]="project.title"
+                required
                 autofocus />
             <small class="p-error" *ngIf="submitted && !project.title">
                 Title is required.
@@ -21,10 +22,13 @@
         </div>
         <div class="field">
             <label for="description">Content</label>
-            <p-editor [(ngModel)]="project.content">
+            <p-editor [(ngModel)]="project.content" *ngIf="loaded; else loading">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>
+            <ng-template #loading>
+                <p-skeleton height="4rem"/>
+            </ng-template>
             <small class="p-error" *ngIf="submitted && !project.content">
                 Content is required.
             </small>
@@ -43,6 +47,7 @@
             label="Save"
             icon="pi pi-check"
             [text]="true"
-            (click)="saveProject()" />
+            (click)="saveProject()"
+            [disabled]="!loaded || !project.title || !project.content"/>
     </ng-template>
 </p-dialog>

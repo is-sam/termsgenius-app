@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Project } from '../../../interfaces/project';
@@ -8,22 +8,44 @@ import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ProjectService } from '../../services/project.service';
 import { ToastService } from '../../services/toast.service';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-project-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule, DialogModule, ButtonModule, InputTextModule, EditorModule,],
+  imports: [CommonModule, FormsModule, DialogModule, ButtonModule, InputTextModule, EditorModule, SkeletonModule],
   templateUrl: './project-modal.component.html',
   styleUrl: './project-modal.component.scss'
 })
-export class ProjectModalComponent {
+export class ProjectModalComponent implements OnInit {
   @Input() project!: Project;
   @Output() onHideDialog: EventEmitter<void> = new EventEmitter();
 
   visible: boolean = true;
   submitted: boolean = false;
+  loaded: boolean = false;
 
   constructor(private projectService: ProjectService, private message: ToastService) {}
+
+  ngOnInit() {
+    console.log('Project before:', this.project);
+
+    if (!this.project?.id) {
+      this.loaded = true;
+      return;
+    }
+
+    this.projectService.getProject(Number(this.project.id)).subscribe({
+      next: (project: Project) => {
+        console.log('Project loaded:', project);
+        this.project = project;
+      }, error: (error) => {
+        console.log('Error loading project:', error);
+      }, complete: () => {
+        this.loaded = true;
+      }
+    });
+  }
 
   hideDialog() {
     console.log('Hiding dialog...');
