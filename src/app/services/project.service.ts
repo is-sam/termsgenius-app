@@ -2,22 +2,24 @@ import { Injectable } from '@angular/core';
 import { Project } from '../../interfaces/project';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject, Observable, take } from 'rxjs';
+import { BehaviorSubject, Observable, take, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectService {
   projects$: BehaviorSubject<Array<Project>> = new BehaviorSubject<Array<Project>>([]);
+  loading: boolean = true;
 
   constructor(private http: HttpClient) { }
 
   loadProjects() {
     this.getProjects()
-    .pipe(take(1))
+    .pipe(tap(() => this.loading = true))
     .subscribe((projects) => {
       console.log('projects', projects);
       this.projects$.next(projects);
+      this.loading = false;
     });
   }
 
