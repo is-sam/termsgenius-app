@@ -17,6 +17,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProjectModalComponent } from '../project-modal/project-modal.component';
 import { ToastService } from '../../services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
@@ -56,6 +57,7 @@ export class ProjectsComponent implements OnInit {
     private message: ToastService,
     private confirmation: ConfirmationService,
     public projectService: ProjectService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -104,5 +106,10 @@ export class ProjectsComponent implements OnInit {
   search (event: Event) {
     const value = (<HTMLInputElement>event.target).value;
     this.table.filterGlobal(value, 'contains');
+  }
+
+  showQuestions(project: Project) {
+    console.log('showQuestions', project);
+    this.router.navigate(['/projects', project.id]);
   }
 }

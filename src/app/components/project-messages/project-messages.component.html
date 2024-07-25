@@ -1,0 +1,28 @@
+<div class="card h-screen">
+
+    <div class="messages-container surface-ground p-6">
+        <h2>Project: {{ project?.title }}</h2>
+        <p-editor [(ngModel)]="project.content" *ngIf="project !== null; else loading" [readonly]="true">
+            <ng-template pTemplate="header">
+            </ng-template>
+        </p-editor>
+        <ng-template #loading>
+            <p-skeleton height="4rem"/>
+        </ng-template>
+
+        <p-divider />
+
+        <div class="messages">
+            <p *ngFor="let message of messages" class="message-{{message.owner}}">{{message.text}}</p>
+            <p class="no-messages" *ngIf="messages.length === 0">No messages yet!</p>
+        </div>
+    </div>
+
+    <div class="new-message surface-ground">
+        <p-inputGroup class="w-full">
+            <input pInputText type="text" [(ngModel)]="message" />
+            <button pButton (click)="addMessage()" [disabled]="message.length === 0">Send</button>
+        </p-inputGroup>
+    </div>
+
+</div>

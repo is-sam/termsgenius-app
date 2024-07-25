@@ -42,4 +42,12 @@ export class ProjectService {
   deleteProject(project: Project): Observable<void> {
     return this.http.delete<void>(`${environment.apiEndpoint}/api/projects/${project.id}`);
   }
+
+  getMessages(id: number): Observable<any> {
+    return this.http.get<any>(`${environment.apiEndpoint}/api/projects/${id}/messages`);
+  }
+
+  addMessage(id: number, message: string): Observable<any> {
+    return this.http.post<any>(`${environment.apiEndpoint}/api/projects/${id}/messages`, { text: message });
+  }
 }
