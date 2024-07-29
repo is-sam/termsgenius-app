@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+    restart: unless-stopped
+    container_name: termsgenius_app
+    ports:
+      - "4200:4200"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
