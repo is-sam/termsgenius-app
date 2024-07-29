@@ -25,6 +25,7 @@ export class ProjectMessagesComponent implements OnInit {
   project: Project|null = null;
   messages: Array<ProjectMessage> = [];
   message: string = '';
+  waitingAI: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -51,13 +52,20 @@ export class ProjectMessagesComponent implements OnInit {
   }
 
   addMessage() {
-    console.log('addMessage', this.message);
-    this.projectService.addMessage(Number(this.id), this.message).subscribe({
-      next: (data: ProjectMessage) => {
+    const message = this.message.trim();
+    this.message = '';
+    console.log('addMessage', message);
+    this.messages.push({
+      text: message,
+      owner: 'user',
+    });
+    this.waitingAI = true;
+    this.projectService.addMessage(Number(this.id), message).subscribe({
+      next: (data: {message: ProjectMessage, response: ProjectMessage}) => {
         console.log(data);
-        this.messages.push(data);
-        this.message = '';
+        this.messages.push(data.response);
         this.loadMessages();
+        this.waitingAI = false;
       },
       error: (error) => {
         console.log(error);
