@@ -22,7 +22,7 @@
         </div>
         <div class="field">
             <label for="description">Content</label>
-            <p-editor [(ngModel)]="project.content" *ngIf="loaded; else loading">
+            <p-editor [(ngModel)]="project.content" *ngIf="loaded; else loading" (onTextChange)="onTextChange()">
                 <ng-template pTemplate="header">
                 </ng-template>
             </p-editor>

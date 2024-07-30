@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { Project } from '../../../interfaces/project';
@@ -25,7 +25,11 @@ export class ProjectModalComponent implements OnInit {
   submitted: boolean = false;
   loaded: boolean = false;
 
-  constructor(private projectService: ProjectService, private message: ToastService) {}
+  constructor(
+    private projectService: ProjectService,
+    private message: ToastService,
+    private cd: ChangeDetectorRef,
+  ) {}
 
   ngOnInit() {
     console.log('Project before:', this.project);
@@ -53,6 +57,12 @@ export class ProjectModalComponent implements OnInit {
   }
 
   saveProject() {
+    // check title & content
+    if (!this.project.title || !this.project.content) {
+      this.message.add({ severity: 'error', summary: 'Error', detail: 'Title and Content are required' });
+      return;
+    }
+
     this.submitted = true;
     const isNew = !this.project.id;
     console.log('Saving project...', isNew, this.project);
@@ -92,5 +102,9 @@ export class ProjectModalComponent implements OnInit {
         console.error('Error updating project:', error);
       }
     });
+  }
+
+  onTextChange() {
+    this.cd.detectChanges();
   }
 }
