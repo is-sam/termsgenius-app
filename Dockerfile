@@ -1,14 +1,10 @@
 FROM node:20 as node
 
-RUN mkdir /home/app
+WORKDIR /app
 
-WORKDIR /home/app
+RUN npm install -g @angular/cli@18
 
-RUN npm install @angular-devkit/build-angular --force
-RUN npm install -g @angular/cli@13
+COPY package*.json .
+RUN npm install
 
-# COPY package.json .
-# COPY package-lock.json .
 COPY . .
-
-RUN npm install --force
