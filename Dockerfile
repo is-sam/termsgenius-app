@@ -1,21 +1,14 @@
-# Stage 1: Build the application
-FROM node:20-alpine as build-stage
+FROM node:20 as node
 
-# Set the working directory
-WORKDIR /app
+RUN mkdir /home/app
 
-# Copy the package.json and package-lock.json
-COPY package*.json ./
+WORKDIR /home/app
 
-# Install the dependencies
-RUN npm install
-RUN npm install -g @angular/cli@18
+RUN npm install @angular-devkit/build-angular --force
+RUN npm install -g @angular/cli@13
 
-# Copy the rest of the application code
+# COPY package.json .
+# COPY package-lock.json .
 COPY . .
 
-# Expose the development server port
-EXPOSE 4200
-
-# Start the development server
-CMD ["npm", "run", "start-docker"]
+RUN npm install --force
