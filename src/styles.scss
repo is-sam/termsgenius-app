@@ -12,5 +12,10 @@
 }
 
 .active-route {
-    background-color: var(--teal-100);
+    background-color: var(--surface-100);
+    color: var(--gray-700) !important;
+}
+
+:root {
+    --primary-color: #1a3d7c;
 }
