@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
+import moment from 'moment';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,8 @@ import { SkeletonModule } from 'primeng/skeleton';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
+  moment: any = moment;
+
   constructor(public dashboardService: DashboardService) {}
 
   ngOnInit() {
