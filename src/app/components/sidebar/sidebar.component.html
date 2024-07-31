@@ -34,7 +34,9 @@
                     <p-menu #menu [model]="items" [popup]="true" [style]="{ width: '100%' }"></p-menu>
                     <a pRipple (click)="menu.toggle($event)" class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-200 hover:bg-teal-500 hover:text-700 transition-duration-150 transition-colors p-ripple">
                         <p-avatar shape="circle" />
-                        <span class="font-bold">{{ userEmail() }}</span>
+                        <span class="font-bold">
+                            {{ userEmail() }} <p-badge class="ml-1" value="TRIAL" severity="warning" />
+                        </span>
                     </a>
                 </div>
             </div>

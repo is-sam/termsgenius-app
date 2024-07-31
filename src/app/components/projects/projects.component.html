@@ -56,6 +56,8 @@
                         [rounded]="true"
                         [text]="true"
                         severity="info"
+                        pTooltip="Show Messages"
+                        [tooltipPosition]="'bottom'"
                         (click)="showQuestions(project)" />
                     <p-button
                         pRipple
@@ -64,6 +66,8 @@
                         [rounded]="true"
                         [text]="true"
                         severity="success"
+                        pTooltip="Edit"
+                        [tooltipPosition]="'bottom'"
                         (click)="editProject(project)" />
                     <p-button
                         pRipple
@@ -71,6 +75,8 @@
                         severity="danger"
                         [rounded]="true"
                         [text]="true"
+                        pTooltip="Delete"
+                        [tooltipPosition]="'bottom'"
                         (click)="deleteProject(project)" />
                 </td>
             </tr>

@@ -18,6 +18,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ProjectModalComponent } from '../project-modal/project-modal.component';
 import { ToastService } from '../../services/toast.service';
 import { Router } from '@angular/router';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-projects',
@@ -38,6 +39,7 @@ import { Router } from '@angular/router';
     RadioButtonModule,
     ConfirmDialogModule,
     ProjectModalComponent,
+    TooltipModule,
   ],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.scss',

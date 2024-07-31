@@ -7,11 +7,12 @@ import { StyleClassModule } from 'primeng/styleclass';
 import { AuthService } from '../../auth/auth.service';
 import { MenuModule } from 'primeng/menu';
 import { MenuItem } from 'primeng/api';
+import { BadgeModule } from 'primeng/badge';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [SidebarModule, ButtonModule, AvatarModule, StyleClassModule, RouterLink, RouterLinkActive, MenuModule],
+  imports: [SidebarModule, ButtonModule, AvatarModule, StyleClassModule, RouterLink, RouterLinkActive, MenuModule, BadgeModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
