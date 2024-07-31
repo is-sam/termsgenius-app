@@ -13,6 +13,7 @@ import moment from 'moment';
 })
 export class DashboardComponent implements OnInit {
   moment: any = moment;
+  data$ = this.dashboardService.data$;
 
   constructor(public dashboardService: DashboardService) {}
 
