@@ -20,16 +20,14 @@ interface AuthRegisterResponse {
 })
 export class SignUpComponent {
   signupForm: FormGroup = new FormGroup({
+    firstname: new FormControl('', [Validators.required, Validators.minLength(2)]),
+    lastname: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     repeatPassword: new FormControl('', [Validators.required])
   }, {
     validators: [this.checkPasswords]
   } as AbstractControlOptions);
-
-  email: string = '';
-  password: string = '';
-  repeatPassword: string = '';
 
   constructor(
     private http: HttpClient,
@@ -78,5 +76,13 @@ export class SignUpComponent {
 
   get repeatPasswordControl() {
     return this.signupForm.get('repeatPassword');
+  }
+
+  get firstnameControl() {
+    return this.signupForm.get('firstname');
+  }
+
+  get lastnameControl() {
+    return this.signupForm.get('lastname');
   }
 }

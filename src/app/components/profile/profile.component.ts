@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { User } from '../../../interfaces/user';
 import { AuthService } from '../../auth/auth.service';
+import { ProfileService } from '../../services/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -12,11 +13,15 @@ import { AuthService } from '../../auth/auth.service';
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit {
-  user!: User;
+  user: User|null = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private profileService: ProfileService
+  ) {}
 
   ngOnInit() {
-    this.user = this.authService.getData();
+    this.profileService.loadData();
+    this.profileService.getData().subscribe(data => {
+      this.user = data;
+    });
   }
 }
