@@ -21,6 +21,15 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((err) => {
       if (err instanceof HttpErrorResponse && err.status === 401) {
+        if (req.url.endsWith('/auth/login')) {
+          message.add({
+            severity: 'error',
+            summary: 'Login failed',
+            detail: err.error.message,
+          });
+          return throwError(err);
+        }
+
         authService.logout();
         message.add({
           severity: 'error',
