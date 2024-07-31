@@ -1,5 +1,5 @@
 <div class="card p-6 surface-ground h-screen">
-    <p-toolbar styleClass="mb-4 gap-2 border">
+    <!-- <p-toolbar styleClass="mb-4 gap-2 border">
         <ng-template pTemplate="left">
             <p-button
                 pRipple
@@ -9,7 +9,8 @@
                 class="mr-2"
                 (click)="openNew()" />
         </ng-template>
-    </p-toolbar>
+    </p-toolbar> -->
+    <h2>Manage Documents</h2>
 
     <p-table
         #dt
@@ -23,7 +24,6 @@
     >
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
-                <h3 class="m-0">Manage Projects</h3>
                 <span class="p-input-icon-left">
                     <i class="pi pi-search"></i>
                     <input
@@ -32,6 +32,12 @@
                         placeholder="Search..."
                         (input)="search($event)" />
                 </span>
+                <p-button
+                    pRipple
+                    severity="primary"
+                    label="New"
+                    icon="pi pi-plus"
+                    (click)="openNew()" />
             </div>
         </ng-template>
         <ng-template pTemplate="body" let-project>
@@ -48,7 +54,7 @@
                         icon="pi pi-comments"
                         class="mr-2"
                         [rounded]="true"
-                        [outlined]="true"
+                        [text]="true"
                         severity="info"
                         (click)="showQuestions(project)" />
                     <p-button
@@ -56,7 +62,7 @@
                         icon="pi pi-pencil"
                         class="mr-2"
                         [rounded]="true"
-                        [outlined]="true"
+                        [text]="true"
                         severity="success"
                         (click)="editProject(project)" />
                     <p-button
@@ -64,7 +70,7 @@
                         icon="pi pi-trash"
                         severity="danger"
                         [rounded]="true"
-                        [outlined]="true"
+                        [text]="true"
                         (click)="deleteProject(project)" />
                 </td>
             </tr>
@@ -74,4 +80,4 @@
     <app-project-modal *ngIf="projectDialogVisible" [project]="project" (onHideDialog)="projectDialogVisible = false"></app-project-modal>
 </div>
 
-<p-confirmDialog />
+<p-confirmDialog [rejectButtonStyleClass]="'bg-gray-500'" />

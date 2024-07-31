@@ -16,8 +16,8 @@ export const routes: Routes = [
   { path: 'sign-up', component: SignUpComponent },
   { path: 'sign-out', component: SignOutComponent, canActivate: [authGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
-  { path: 'projects', component: ProjectsComponent, canActivate: [authGuard] },
-  { path: 'projects/:id', component: ProjectMessagesComponent, canActivate: [authGuard] },
+  { path: 'documents', component: ProjectsComponent, canActivate: [authGuard] },
+  { path: 'documents/:id', component: ProjectMessagesComponent, canActivate: [authGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [authGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: '**', component: PageNotFoundComponent }

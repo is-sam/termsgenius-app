@@ -110,6 +110,6 @@ export class ProjectsComponent implements OnInit {
 
   showQuestions(project: Project) {
     console.log('showQuestions', project);
-    this.router.navigate(['/projects', project.id]);
+    this.router.navigate(['/documents', project.id]);
   }
 }

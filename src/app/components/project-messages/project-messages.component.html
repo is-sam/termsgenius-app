@@ -1,7 +1,7 @@
 <div class="card h-screen">
 
     <div class="messages-container surface-ground p-6">
-        <h2>Project: {{ project?.title }}</h2>
+        <h2>Document: {{ project?.title }}</h2>
         <p-editor [ngModel]="project.content" *ngIf="project !== null; else loading" [readonly]="true" [style]="{ height: '300px' }">
             <ng-template pTemplate="header">
             </ng-template>

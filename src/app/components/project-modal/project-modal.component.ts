@@ -41,7 +41,7 @@ export class ProjectModalComponent implements OnInit {
 
     this.projectService.getProject(Number(this.project.id)).subscribe({
       next: (project: Project) => {
-        console.log('Project loaded:', project);
+        console.log('Document loaded:', project);
         this.project = project;
       }, error: (error) => {
         console.log('Error loading project:', error);
@@ -59,7 +59,7 @@ export class ProjectModalComponent implements OnInit {
   saveProject() {
     // check title & content
     if (!this.project.title || !this.project.content) {
-      this.message.add({ severity: 'error', summary: 'Error', detail: 'Title and Content are required' });
+      // this.message.add({ severity: 'error', summary: 'Error', detail: 'Title and Content are required' });
       return;
     }
 
@@ -73,8 +73,8 @@ export class ProjectModalComponent implements OnInit {
         content: this.project.content,
       }).subscribe({
         next: (project: Project) => {
-          console.log('Project save success:', project);
-          this.message.add({ severity: 'success', summary: 'Success', detail: 'Project saved!' });
+          console.log('Document save success:', project);
+          this.message.add({ severity: 'success', summary: 'Success', detail: 'Document saved!' });
           this.projectService.loadProjects();
           this.hideDialog();
         },
@@ -92,8 +92,8 @@ export class ProjectModalComponent implements OnInit {
       content: this.project.content,
     }).subscribe({
       next: (project: Project) => {
-        console.log('Project update success:', project);
-        this.message.add({ severity: 'success', summary: 'Success', detail: 'Project updated!' });
+        console.log('Document update success:', project);
+        this.message.add({ severity: 'success', summary: 'Success', detail: 'Document updated!' });
         this.projectService.loadProjects();
         this.hideDialog();
       },
