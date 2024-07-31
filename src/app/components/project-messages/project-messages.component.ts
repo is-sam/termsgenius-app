@@ -73,4 +73,10 @@ export class ProjectMessagesComponent implements OnInit {
       }
     });
   }
+
+  onKeyPress(event: KeyboardEvent) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      this.addMessage();
+    }
+  }
 }

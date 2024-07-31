@@ -21,8 +21,8 @@
 
     <div class="new-message surface-ground">
         <p-inputGroup class="w-full">
-            <input pInputText type="text" [(ngModel)]="message" [disabled]="waitingAI" />
-            <button pButton (click)="addMessage()" [disabled]="message.length === 0 || waitingAI" (keypress.enter)="addMessage()">Send</button>
+            <input pInputText type="text" [(ngModel)]="message" [disabled]="waitingAI" (keypress)="onKeyPress($event)"/>
+            <button pButton (click)="addMessage()" [disabled]="message.length === 0 || waitingAI">Send</button>
         </p-inputGroup>
     </div>
 
