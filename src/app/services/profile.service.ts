@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, repeat, Subject } from 'rxjs';
 import { User } from '../../interfaces/user';
 import { environment } from '../../environments/environment';
 
@@ -20,5 +20,13 @@ export class ProfileService {
 
   getData(): Observable<User> {
     return this.http.get<User>(`${environment.apiEndpoint}/api/profile/data`);
+  }
+
+  update(user: User): Observable<User> {
+    return this.http.put<User>(`${environment.apiEndpoint}/api/profile/data`, user);
+  }
+
+  changePassword(password: string, repeatPassword: string): Observable<User> {
+    return this.http.put<User>(`${environment.apiEndpoint}/api/profile/password`, { password, repeatPassword });
   }
 }
