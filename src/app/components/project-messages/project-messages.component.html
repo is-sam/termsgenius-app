@@ -13,7 +13,10 @@
         <p-divider />
 
         <div class="messages">
-            <p *ngFor="let message of messages" class="message-{{message.owner}}">{{message.text}}</p>
+            <p *ngFor="let message of messages" class="message-{{message.owner}}">
+                <span *ngIf="message.owner === 'user'">{{ message.text }}</span>
+                <span *ngIf="message.owner === 'ai'" [innerHTML]="marked.parse(message.text)"></span>
+            </p>
             <p class="message-ai" *ngIf="waitingAI">...</p>
             <p class="no-messages" *ngIf="messages.length === 0">No messages yet!</p>
         </div>

@@ -12,6 +12,7 @@ import { InputGroupModule } from 'primeng/inputgroup';
 import { SkeletonModule } from 'primeng/skeleton';
 import { EditorModule } from 'primeng/editor';
 import { ToastService } from '../../services/toast.service';
+import { marked } from 'marked';
 
 @Component({
   selector: 'app-project-messages',
@@ -26,11 +27,12 @@ export class ProjectMessagesComponent implements OnInit {
   messages: Array<ProjectMessage> = [];
   message: string = '';
   waitingAI: boolean = false;
+  marked: any = marked;
 
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private toast: ToastService
+    private toast: ToastService,
   ) {
     this.id = this.route.snapshot.paramMap.get('id')
   }
