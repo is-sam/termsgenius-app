@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProjectService } from '../../services/project.service';
 import { Project } from '../../../interfaces/project';
@@ -21,13 +21,19 @@ import { marked } from 'marked';
   templateUrl: './project-messages.component.html',
   styleUrl: './project-messages.component.scss'
 })
-export class ProjectMessagesComponent implements OnInit {
+export class ProjectMessagesComponent implements OnInit, AfterViewChecked {
+  @ViewChild('scrollTo') scrollTo: any;
+
   id: string|null;
   project: Project|null = null;
   messages: Array<ProjectMessage> = [];
   message: string = '';
   waitingAI: boolean = false;
+
   marked: any = marked;
+
+  isScrolledToBottom: boolean = false;
+  loadedMessages: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -35,6 +41,18 @@ export class ProjectMessagesComponent implements OnInit {
     private toast: ToastService,
   ) {
     this.id = this.route.snapshot.paramMap.get('id')
+  }
+
+  @HostListener('window:scroll', [])
+  onWindowScroll(): void {
+    const scrollPosition = window.pageYOffset + window.innerHeight;
+    const pageHeight = document.documentElement.scrollHeight;
+
+    // Only update the state if the condition changes
+    const atBottom = scrollPosition >= pageHeight;
+    if (this.isScrolledToBottom !== atBottom) {
+      this.isScrolledToBottom = atBottom;
+    }
   }
 
   ngOnInit() {
@@ -46,10 +64,23 @@ export class ProjectMessagesComponent implements OnInit {
     this.loadMessages();
   }
 
+  ngAfterViewChecked() {
+    console.log('ngAfterViewChecked');
+    if (this.loadedMessages) {
+      this.scrollToBottom();
+      this.loadedMessages = false;
+    }
+  }
+
+  scrollToBottom() {
+    this.scrollTo.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
+
   loadMessages() {
     this.projectService.getMessages(Number(this.id)).subscribe((data: Array<ProjectMessage>) => {
       console.log(data);
       this.messages = data;
+      this.loadedMessages = true;
     });
   }
 

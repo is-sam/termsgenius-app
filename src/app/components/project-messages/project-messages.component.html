@@ -20,6 +20,8 @@
             <p class="message-ai" *ngIf="waitingAI">...</p>
             <p class="no-messages" *ngIf="messages.length === 0">No messages yet!</p>
         </div>
+        <p-button *ngIf="!isScrolledToBottom" icon="pi pi-angle-double-down" class="fixed bottom-0 mb-8 align-self-center" [rounded]="true" [text]="true" size="small" (click)="scrollToBottom()"/>
+        <span #scrollTo></span>
     </div>
 
     <div class="new-message surface-ground">
