@@ -9,8 +9,17 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     const token = localStorage.getItem('token');
-    // Add additional token validation logic here if needed
-    return !!token;
+    if (!token) {
+      return false;
+    }
+    // check token validity
+    const data = this.getData();
+    if (data.exp < Date.now() / 1000) {
+      this.logout();
+      return false;
+    }
+
+    return true;
   }
 
   login(token: string): void {
