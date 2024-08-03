@@ -65,10 +65,11 @@ export class ProjectMessagesComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    console.log('ngAfterViewChecked');
     if (this.loadedMessages) {
-      this.scrollToBottom();
       this.loadedMessages = false;
+      setTimeout(() => {
+        this.scrollToBottom();
+      }, 300);
     }
   }
 
@@ -103,6 +104,8 @@ export class ProjectMessagesComponent implements OnInit, AfterViewChecked {
       error: (error) => {
         console.log(error);
         this.toast.add({ severity: 'error', summary: 'Error adding message', detail: error.error.error });
+        this.loadMessages();
+        this.waitingAI = false;
       }
     });
   }
