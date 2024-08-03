@@ -7,11 +7,12 @@ import { AbstractControlOptions, FormControl, FormGroup, FormsModule, ReactiveFo
 import { DialogModule } from 'primeng/dialog';
 import { ToastService } from '../../services/toast.service';
 import { InputTextModule } from 'primeng/inputtext';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, ButtonModule, FormsModule, ReactiveFormsModule, DialogModule, InputTextModule],
+  imports: [CommonModule, ButtonModule, FormsModule, ReactiveFormsModule, DialogModule, InputTextModule, SkeletonModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
