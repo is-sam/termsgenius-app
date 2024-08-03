@@ -10,19 +10,19 @@
                 <div class="overflow-y-auto">
                     <ul class="list-none overflow-hidden">
                         <li>
-                            <a pRipple routerLink="/dashboard" routerLinkActive="active-route" class="flex align-items-center cursor-pointer p-3 border-round-left text-200 hover:bg-teal-500 hover:text-700 transition-duration-150 transition-colors p-ripple">
+                            <a pRipple routerLink="/dashboard" routerLinkActive="active-route" class="flex align-items-center cursor-pointer p-3 border-round-left text-200 hover:bg-blue-200 hover:text-700 transition-duration-150 transition-colors p-ripple">
                                 <i class="pi pi-chart-bar mr-2"></i>
                                 <span class="font-medium">Dashboard</span>
                             </a>
                         </li>
                         <li>
-                            <a pRipple routerLink="/documents" routerLinkActive="active-route" class="flex align-items-center cursor-pointer p-3 border-round-left text-200 hover:bg-teal-500 hover:text-700 transition-duration-150 transition-colors p-ripple">
+                            <a pRipple routerLink="/documents" routerLinkActive="active-route" class="flex align-items-center cursor-pointer p-3 border-round-left text-200 hover:bg-blue-200 hover:text-700 transition-duration-150 transition-colors p-ripple">
                                 <i class="pi pi-folder mr-2"></i>
                                 <span class="font-medium">Documents</span>
                             </a>
                         </li>
                         <li>
-                            <a pRipple routerLink="/settings" routerLinkActive="active-route" class="flex align-items-center cursor-pointer p-3 border-round-left text-200 hover:bg-teal-500 hover:text-700 transition-duration-150 transition-colors p-ripple">
+                            <a pRipple routerLink="/settings" routerLinkActive="active-route" class="flex align-items-center cursor-pointer p-3 border-round-left text-200 hover:bg-blue-200 hover:text-700 transition-duration-150 transition-colors p-ripple">
                                 <i class="pi pi-cog mr-2"></i>
                                 <span class="font-medium">Settings</span>
                             </a>
@@ -32,7 +32,7 @@
                 <div class="mt-auto">
                     <hr class="mb-3 mx-3 border-top-1 border-none surface-border" />
                     <p-menu #menu [model]="items" [popup]="true" [style]="{ width: '100%' }"></p-menu>
-                    <a pRipple (click)="menu.toggle($event)" class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-200 hover:bg-teal-500 hover:text-700 transition-duration-150 transition-colors p-ripple">
+                    <a pRipple (click)="menu.toggle($event)" class="m-3 flex align-items-center cursor-pointer p-3 gap-2 border-round text-200 hover:bg-blue-200 hover:text-700 transition-duration-150 transition-colors p-ripple">
                         <p-avatar shape="circle" />
                         <span class="font-bold">
                             {{ userEmail() }} <p-badge class="ml-1" value="TRIAL" severity="warning" />

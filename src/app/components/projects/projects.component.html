@@ -21,6 +21,8 @@
         [rowHover]="true"
         dataKey="id"
         [loading]="projectService.loading"
+        [styleClass]="'surface-ground'"
+        [paginatorStyleClass]="'surface-ground'"
     >
         <ng-template pTemplate="caption">
             <div class="flex align-items-center justify-content-between">
@@ -41,7 +43,7 @@
             </div>
         </ng-template>
         <ng-template pTemplate="body" let-project>
-            <tr>
+            <tr class="surface-ground">
                 <td>
                     {{ project.title }}
                 </td>
