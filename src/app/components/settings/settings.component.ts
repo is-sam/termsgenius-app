@@ -1,12 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { TagModule } from 'primeng/tag';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [CommonModule, ToggleButtonModule, FormsModule],
+  imports: [CommonModule, ToggleButtonModule, FormsModule, TagModule],
   templateUrl: './settings.component.html',
   styleUrl: './settings.component.scss'
 })

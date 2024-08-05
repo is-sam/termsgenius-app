@@ -12,8 +12,9 @@ import { AuthService } from '../../../auth/auth.service';
 import { Subject, takeUntil } from 'rxjs';
 import { GoogleSigninButtonModule, SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 import { DividerModule } from 'primeng/divider';
+import { GoogleService } from '../../../services/google.service';
 
-interface AuthLoginResponse {
+export interface AuthLoginResponse {
   token: string;
 }
 
@@ -45,13 +46,22 @@ export class SignInComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private auth: AuthService,
     private socialAuth: SocialAuthService,
+    private google: GoogleService,
   ) {}
 
   ngOnInit(): void {
     this.socialAuth.authState.subscribe({
       next: (user: SocialUser) => {
         console.log('Google user:', user);
-        this.googleSignInt(user.idToken);
+        this.google.signIn(user.idToken).subscribe({
+          next: (response: AuthLoginResponse) => {
+            console.log('Google auth response:', response);
+            this.auth.login(response.token);
+          },
+          error: (error) => {
+            console.log('Error signing in with Google:', error);
+          }
+        });;
       }
     });
   }
@@ -71,21 +81,6 @@ export class SignInComponent implements OnInit, OnDestroy {
         },
         error: (error) => {
           console.log('Error signing in:', error);
-        }
-      });
-  }
-
-  googleSignInt(token: string): void {
-    console.log('googleSignInt', token);
-    this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/auth/google`, { token })
-      .pipe(takeUntil(this.isDesroyed$))
-      .subscribe({
-        next: (response: AuthLoginResponse) => {
-          console.log('Google auth response:', response);
-          this.auth.login(response.token);
-        },
-        error: (error) => {
-          console.log('Error signing in with Google:', error);
         }
       });
   }

@@ -1,10 +1,11 @@
-<div class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground ng-star-inserted h-screen">
+<div class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 bg-primary ng-star-inserted h-screen">
+    <img src="assets/logo-horizontal-white.png" alt="Image" height="50" class="mb-3 absolute top-0 mt-4">
+    
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div class="text-center mb-5">
-            <img src="assets/logo-horizontal.png" alt="Image" height="50" class="mb-3">
-            <div class="text-900 text-3xl font-medium mb-3">Join Us</div>
+            <div class="text-900 text-3xl font-medium mb-3">JOIN US</div>
             <span class="text-600 font-medium line-height-3">Already have an account?</span>
-            <a routerLink="/sign-in" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Sign In!</a>
+            <a routerLink="/sign-in" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Sign In</a>
         </div>
         <form [formGroup]="signupForm" (ngSubmit)="signUp()">
             <div>
@@ -51,6 +52,16 @@
                     <span class="p-button-icon p-button-icon-left pi pi-user" aria-hidden="true"></span>
                     <span class="p-button-label">Sign Up</span>
                 </button>
+
+                <p-divider class="mx-auto"></p-divider>
+
+                <asl-google-signin-button
+                    class="text-center align-self-center justify-content-center w-full"
+                    type='standard'
+                    size='large'
+                    shape="pill"
+                    text="signup_with">
+                </asl-google-signin-button>
             </div>
         </form>
     </div>
