@@ -1,15 +1,14 @@
-<div class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 surface-ground ng-star-inserted h-screen">
+<div class="align-items-center flex justify-content-center lg:px-8 md:px-6 px-4 py-8 bg-primary ng-star-inserted h-screen">
+    <img
+        src="assets/logo-horizontal-white.png"
+        alt="Image"
+        height="100"
+        class="mb-3 absolute top-0 mt-2"
+    >
+    <br>
     <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div class="text-center mb-5">
-            <img
-                src="assets/logo-horizontal.png"
-                alt="Image"
-                height="50"
-                class="mb-3"
-            >
             <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
-            <span class="text-600 font-medium line-height-3">Don't have an account?</span>
-            <a routerLink="/sign-up" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Sign Up!</a>
         </div>
         <div>
             <label for="email" class="block text-900 font-medium mb-2">Email</label>
@@ -36,18 +35,31 @@
                 </div>
                 <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
             </div>
+
             <button
                 pButton
                 pripple
                 label="Sign In"
                 icon="pi pi-user"
-                class="p-element p-ripple w-full p-button p-component"
+                class="p-element p-ripple w-full p-button p-component mt-2  bg-primary"
                 (click)="signIn()"
             >
                 <span class="p-button-icon p-button-icon-left pi pi-user" aria-hidden="true"></span>
                 <span class="p-button-label">Sign In</span>
                 <span class="p-ink"></span>
             </button>
+            <span class="text-600 font-medium line-height-3">Don't have an account?</span>
+            <a routerLink="/sign-up" class="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Sign Up!</a>
+
+            <p-divider class="mx-auto"></p-divider>
+
+            <asl-google-signin-button
+                class="text-center align-self-center justify-content-center w-full"
+                type='standard'
+                size='large'
+                shape="pill">
+            </asl-google-signin-button>
+
         </div>
     </div>
 </div>

@@ -58,7 +58,7 @@
                 <div class="flex justify-content-between mb-3">
                     <div>
                         <span class="block text-500 font-medium mb-3">Time Saved</span>
-                        <div class="text-900 font-medium text-xl" *ngIf="data$ | async; let data; else timesavedLoader">{{ moment.duration(data.timesaved, 'seconds').humanize() }}</div>
+                        <div class="text-900 font-medium text-xl" *ngIf="data$ | async; let data; else timesavedLoader">{{ data.timesaved === 0 ? '-' : moment.duration(data.timesaved, 'seconds').humanize() }}</div>
                         <ng-template #timesavedLoader>
                             <p-skeleton width="2rem"/>
                         </ng-template>
