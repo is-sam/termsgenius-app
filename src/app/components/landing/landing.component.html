@@ -1,172 +1,377 @@
-<div class="ng-star-inserted" style="height: 100vh; overflow: hidden;">
-    <div class="min-h-screen flex relative lg:static surface-ground">
-        <div id="app-sidebar-13" class="surface-section h-screen hidden lg:block flex-shrink-0 absolute lg:static left-0 top-0 z-1 border-right-1 surface-border select-none" style="width: 280px;">
-            <div class="flex flex-column h-full">
-                <div class="flex align-items-center justify-content-center px-3 py-5 border-bottom-1 surface-border" style="height: 60px;">
-                    <img src="assets/logo-horizontal.png" alt="Image" height="30">
-                </div>
-                <div class="flex justify-content-center py-5">
-                    <p-selectButton optionlabel="name" optionvalue="value" class="p-element ng-untouched ng-pristine ng-valid">
-                        <div role="group" class="p-selectbutton p-buttonset p-component">
-                            <div
-                                role="button"
-                                pripple=""
-                                class="p-ripple p-element p-button p-component ng-star-inserted p-highlight"
-                                aria-pressed="true"
-                                tabindex="0"
-                                aria-labelledby="Favorites"
-                            >
-                                <!---->
-                                <span class="p-button-label ng-star-inserted">Favorites</span>
-                                <!---->
-                                <!---->
-                                <!---->
-                                <span class="p-ink"></span>
-                            </div>
-                            <div
-                                role="button"
-                                pripple=""
-                                class="p-ripple p-element p-button p-component ng-star-inserted"
-                                aria-pressed="false"
-                                tabindex="0"
-                                aria-labelledby="Apps"
-                            >
-                                <!---->
-                                <span class="p-button-label ng-star-inserted">Apps</span>
-                                <!---->
-                                <!---->
-                                <!---->
-                                <span class="p-ink"></span>
-                            </div>
-                            <!---->
-                        </div>
-                    </p-selectButton>
-                </div>
-                <div class="overflow-y-auto px-5 flex-1">
-                    <ul class="list-none p-0 m-0 ng-star-inserted">
-                        <li>
-                            <a pripple="" class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 border-2 border-transparent hover:surface-hover transition-duration-150 transition-colors text-primary" style="border-radius: 12px;">
-                                <i class="pi pi-home mr-2"></i>
-                                <span class="font-medium">Dashboard</span>
-                                <span class="p-ink"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a pripple="" class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 border-2 border-transparent hover:surface-hover transition-duration-150 transition-colors" style="border-radius: 12px;">
-                                <i class="pi pi-bookmark mr-2"></i>
-                                <span class="font-medium">Bookmarks</span>
-                                <span class="p-ink"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a pripple="" class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 border-2 border-transparent hover:surface-hover transition-duration-150 transition-colors" style="border-radius: 12px;">
-                                <i class="pi pi-users mr-2"></i>
-                                <span class="font-medium">Team</span>
-                                <span class="p-ink"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a pripple="" class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 border-2 border-transparent hover:surface-hover transition-duration-150 transition-colors" style="border-radius: 12px;">
-                                <i class="pi pi-comments mr-2"></i>
-                                <span class="font-medium">Messages</span>
-                                <p-badge value="5" class="p-element ml-auto">
-                                    <span class="p-badge p-component p-badge-no-gutter ng-star-inserted">5</span>
-                                    <!---->
-                                </p-badge>
-                                <span class="p-ink"></span>
-                            </a>
-                        </li>
-                        <li>
-                            <a pripple="" class="p-ripple p-element flex align-items-center cursor-pointer p-3 text-700 border-2 border-transparent hover:surface-hover transition-duration-150 transition-colors" style="border-radius: 12px;">
-                                <i class="pi pi-calendar mr-2"></i>
-                                <span class="font-medium">Calendar</span>
-                                <span class="p-ink"></span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!---->
-                    <!---->
-                </div>
-                <div class="border-top-1 surface-border p-3 flex justify-content-center column-gap-5">
-                    <a pripple="" class="p-ripple p-element cursor-pointer text-purple-500 inline-flex align-items-center justify-content-center hover:surface-100 transition-colors transition-duration-150 w-3rem h-3rem border-circle">
-                        <i class="pi pi-chart-pie text-3xl"></i>
-                        <span class="p-ink"></span>
+<div class="container" style="background: radial-gradient(69.84% 69.84% at 25% 50%, rgba(21, 101, 192, 0.15) 0%, rgba(255, 255, 255, 0) 100%);">
+    <!-- NAVBAR -->
+    <div class="py-3 px-6 flex align-items-center justify-content-between relative absolute top-0">
+        <a routerLink="/landing">
+            <img src="assets/logo-horizontal.png" alt="Logo" height="50">
+        </a>
+        <!-- <a pRipple class="cursor-pointer block lg:hidden text-gray-400" (click)="toggleMenu()">
+            <i class="pi pi-bars text-4xl"></i>
+        </a> -->
+        <!-- <div [ngClass]="{'hidden': !isMenuActive, 'flex': isMenuActive, 'bg-white': isMenuActive}"
+            class="lg:flex lg:flex-grow-1 lg:justify-content-between absolute lg:static w-full lg:w-auto left-0 top-100 lg:top-auto px-6 lg:px-0 flex-column lg:flex-row"> -->
+        <!-- <ul class="list-none p-0 m-0 lg:m-auto flex lg:align-items-center select-none flex-column lg:flex-row text-gray-600">
+                <li>
+                    <a pRipple class="p-ripple p-element flex align-items-center px-3 xl:px-5 py-3 hover:text-blue-600 font-medium transition-colors transition-duration-150 cursor-pointer">
+                        <span class="font-semibold text-xl">Pricing</span>
                     </a>
-                    <a pripple="" class="p-ripple p-element cursor-pointer text-orange-500 inline-flex align-items-center justify-content-center hover:surface-100 transition-colors transition-duration-150 w-3rem h-3rem border-circle">
-                        <i class="pi pi-bolt text-3xl"></i>
-                        <span class="p-ink"></span>
-                    </a>
-                    <a pripple="" class="p-ripple p-element cursor-pointer inline-flex align-items-center justify-content-center hover:surface-100 transition-colors transition-duration-150 w-3rem h-3rem border-circle">
-                        <img src="assets/images/blocks/avatars/circle/avatar-f-1.png" style="width: 42px; height: 42px;">
-                        <span class="p-ink"></span>
-                    </a>
+                </li>
+            </ul> -->
+        <!-- <p-divider></p-divider> -->
+        <div class="flex justify-content-between lg:block py-3 lg:py-0 border-gray-300">
+            <button
+                pButton
+                pRipple
+                label="Join"
+                icon="pi pi-chevron-right"
+                iconPos="right"
+                class="p-button-rounded font-bold"
+            ></button>
+        </div>
+        <!-- </div> -->
+    </div>
+    <!-- HERO -->
+    <div class="p-6 text-center mt-60">
+        <div class="surface-900 text-0 p-2 mx-auto mb-4" style="max-width: 250px; border-radius: 40px;">🔥 Get started in no time</div>
+        <div class="text-6xl text-900 font-bold mb-1">Highly Customizable</div>
+        <div class="text-6xl text-primary font-bold mb-4">Premium Application Template</div>
+        <div class="relative w-full xl:w-30rem mx-auto">
+            <input
+                pInputText
+                type="text"
+                placeholder="Enter your email"
+                class="p-inputtext p-component p-element py-3 pl-3 w-full"
+                style="border-radius: 30px; padding-right: 8rem;"
+            >
+            <button
+                pButton
+                label="Join Now"
+                class="p-button p-component absolute"
+                style="border-radius: 30px; top: 0; right: 0; padding: 0 1.5rem; height: 100%;"
+            ></button>
+        </div>
+        <img src="assets/dashboard_laptop.png" alt="TermzAI Dashboard" class="block mx-auto mt-6 w-8">
+    </div>
+    <!-- WHY JOIN -->
+    <div class="px-4 py-8 md:px-6 lg:px-8 text-center">
+        <div class="mb-3 font-bold text-3xl">
+            <span class="text-900">One Product,</span>
+            <span class="text-blue-600">Many Solutions</span>
+        </div>
+        <div class="text-700 mb-6">Ac turpis egestas maecenas pharetra convallis posuere morbi leo urna.</div>
+        <div class="grid">
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card border-round-md">
+                    <i class="pi pi-desktop text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Built for Developers</div>
+                <span class="text-700 line-height-3">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card border-round-md">
+                    <i class="pi pi-lock text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">End-to-End Encryption</div>
+                <span class="text-700 line-height-3">Risus nec feugiat in fermentum posuere urna nec. Posuere sollicitudin aliquam ultrices sagittis.</span>
+            </div>
+            <div class="col-12 md:col-4 mb-4 px-5">
+                <span class="p-3 shadow-2 mb-3 inline-block surface-card border-round-md">
+                    <i class="pi pi-check-circle text-4xl text-blue-500"></i>
+                </span>
+                <div class="text-900 text-xl mb-3 font-medium">Easy to Use</div>
+                <span class="text-700 line-height-3">Ornare suspendisse sed nisi lacus sed viverra tellus. Neque volutpat ac tincidunt vitae semper.</span>
+            </div>
+        </div>
+    </div>
+    <div class="px-4 py-8 md:px-6 lg:px-8">
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <img src="assets/dashboard.png" alt="Image" class="w-full border-round-diagonal">
+            </div>
+            <div class="col-12 md:col-6 md:pl-6">
+                <div class="p-3 inline-flex align-items-center surface-900 text-0 mb-4 font-medium" style="border-radius: 30px;">
+                    <i class="pi pi-star-fill mr-2"></i>
+                    <span>Open Source API</span>
+                </div>
+                <div class="text-4xl font-bold text-900 mb-3">Redefine Possible</div>
+                <div class="text-700 text-lg mb-5 line-height-3 mb-5">Ac turpis egestas maecenas pharetra convallis posuere morbi leo urna.</div>
+                <div class="flex align-items-center mb-4">
+                    <i class="pi pi-check text-green-600 mr-3"></i>
+                    <div>
+                        <div class="text-900 font-medium mb-2">Simple to Use</div>
+                        <div class="text-700">Duis aute irure dolor in reprehenderit in voluptate velit.</div>
+                    </div>
+                </div>
+                <div class="flex align-items-center mb-4">
+                    <i class="pi pi-check text-green-600 mr-3"></i>
+                    <div>
+                        <div class="text-900 font-medium mb-2">Personalized Design</div>
+                        <div class="text-700">Eu turpis egestas pretium aenean pharetra.</div>
+                    </div>
+                </div>
+                <div class="flex align-items-center mb-4">
+                    <i class="pi pi-check text-green-600 mr-3"></i>
+                    <div>
+                        <div class="text-900 font-medium mb-2">Status Notifications</div>
+                        <div class="text-700">Tortor dignissim convallis aenean et tortor at risus viverra.</div>
+                    </div>
+                </div>
+                <div class="flex align-items-center">
+                    <i class="pi pi-check text-green-600 mr-3"></i>
+                    <div>
+                        <div class="text-900 font-medium mb-2">Interactive Templates</div>
+                        <div class="text-700">Risus nec feugiat in fermentum posuere urna nec.</div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="min-h-screen flex flex-column flex-auto surface-ground p-5">
-            <div class="surface-card flex flex-column flex-auto border-round-xl p-5">
-                <div class="flex justify-content-between align-items-center relative lg:static mb-5 column-gap-5">
-                    <div class="flex align-items-center">
-                        <button
-                            pripple=""
-                            pstyleclass="#app-sidebar-13"
-                            enterclass="hidden"
-                            enteractiveclass="fadeinleft"
-                            leavetoclass="hidden"
-                            leaveactiveclass="fadeoutleft"
-                            class="p-ripple p-element p-link cursor-pointer inline-flex align-items-center justify-content-center lg:hidden text-700 mr-3"
-                        >
-                            <i class="pi pi-bars text-4xl"></i>
-                            <span class="p-ink"></span>
-                        </button>
-                        <div class="font-medium">Welcome back,
-                            <span class="font-bold">Christina!</span> 👋
-                        </div>
-                    </div>
-                    <div>
-                        <a
-                            pripple=""
-                            pstyleclass="@next"
-                            enterclass="hidden"
-                            enteractiveclass="fadein"
-                            leavetoclass="hidden"
-                            leaveactiveclass="fadeout"
-                            class="p-ripple p-element cursor-pointer block lg:hidden text-700"
-                        >
-                            <i class="pi pi-ellipsis-v text-2xl"></i>
-                            <span class="p-ink"></span>
-                        </a>
-                        <ul class="list-none p-3 lg:p-0 m-0 hidden lg:flex lg:align-items-center select-none lg:flex-row lg:border-round-none border-round-xl surface-overlay border-1 lg:border-none surface-border right-0 top-100 z-1 shadow-2 lg:shadow-none absolute lg:static">
-                            <li>
-                                <span class="p-input-icon-left lg:mr-3 mb-3 lg:mb-0">
-                                    <i class="pi pi-search"></i>
-                                    <input
-                                        type="text"
-                                        pinputtext=""
-                                        placeholder="Search"
-                                        class="p-inputtext p-component p-element border-round-3xl w-8rem sm:w-full"
-                                    >
-                                </span>
-                            </li>
-                            <li>
-                                <button
-                                    iconpos="right"
-                                    pButton
-                                    pRipple
-                                    icon="pi pi-plus"
-                                    label="Add Task"
-                                    class="p-ripple p-element border-round-3xl white-space-nowrap w-full lg:w-auto p-button p-component"
-                                >
-                                    <span class="p-button-icon p-button-icon-right pi pi-plus" aria-hidden="true"></span>
-                                    <span class="p-ink"></span>
-                                    <span class="p-button-label">Add Task</span>
-                                </button>
-                            </li>
-                        </ul>
-                    </div>
+    </div>
+    <!-- PRICING -->
+    <!-- <div class="px-4 py-8 md:px-6 lg:px-8 bg-no-repeat bg-cover" style="background: url('assets/images/blocks/pricing/pricing-4.svg');">
+        <div class="flex flex-wrap">
+          <div class="w-full lg:w-6 lg:pr-8">
+            <div class="text-900 font-bold text-4xl mb-4">Pricing</div>
+            <div class="text-700 text-xl line-height-3 mb-4 lg:mb-0">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Velit numquam eligendi quos.</div>
+          </div>
+          <div class="w-full md:w-6 lg:w-3">
+            <ul class="list-none p-0 m-0">
+              <li class="flex align-items-center my-4"><i class="pi pi-check text-green-500 mr-3"></i><span>Arcu vitae elementum</span></li>
+              <li class="flex align-items-center my-4"><i class="pi pi-check text-green-500 mr-3"></i><span>Dui faucibus in ornare</span></li>
+              <li class="flex align-items-center my-4"><i class="pi pi-check text-green-500 mr-3"></i><span>Morbi tincidunt augue</span></li>
+            </ul>
+          </div>
+          <div class="w-full md:w-6 lg:w-3 md:pl-5">
+            <ul class="list-none p-0 m-0">
+              <li class="flex align-items-center my-4"><i class="pi pi-check text-green-500 mr-3"></i><span>Duis ultricies lacus sed</span></li>
+              <li class="flex align-items-center my-4"><i class="pi pi-check text-green-500 mr-3"></i><span>Imperdiet proin</span></li>
+              <li class="flex align-items-center my-4"><i class="pi pi-check text-green-500 mr-3"></i><span>Nisi scelerisque</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="flex flex-wrap mt-5 -mx-3">
+          <div class="w-full lg:w-4 p-3">
+            <div class="shadow-2 p-3 h-full bg-primary" style="border-radius: 6px;">
+              <div class="font-medium text-xl mb-5">Free Forever</div>
+              <div class="font-bold text-5xl mb-5">Free</div>
+              <button type="button" pRipple class="p-ripple p-element font-medium appearance-none border-none p-2 surface-0 text-primary hover:surface-100 p-component lg:w-full border-rounded cursor-pointer transition-colors transition-duration-150" style="border-radius: 6px;">
+                <span>Create Account</span>
+              </button>
+              <p class="text-sm line-height-3 mb-0 mt-5">Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
+            </div>
+          </div>
+          <div class="w-full lg:w-4 p-3">
+            <div class="shadow-2 p-3 h-full surface-card" style="border-radius: 6px;">
+              <div class="font-medium text-xl mb-5 text-900">Monthly</div>
+              <div class="flex align-items-center mb-5">
+                <span class="text-900 font-bold text-5xl">$29</span><span class="font-medium text-500 ml-2">per month</span>
+              </div>
+              <button pButton pRipple label="Proceed Monthly" icon="pi pi-arrow-right" iconPos="right" class="p-element p-ripple lg:w-full font-medium p-2 p-button p-component" style="border-radius: 6px;"></button>
+              <p class="text-sm line-height-3 mb-0 mt-5">Nec ultrices dui sapien eget. Amet nulla facilisi morbi tempus.</p>
+            </div>
+          </div>
+          <div class="w-full lg:w-4 p-3">
+            <div class="shadow-2 p-3 h-full flex flex-column surface-card" style="border-radius: 6px;">
+              <div class="flex flex-row justify-content-between mb-5 align-items-center">
+                <div class="text-900 text-xl font-medium">Yearly</div>
+                <span class="bg-orange-100 text-orange-500 font-semibold px-2 py-1 border-round">🎉 Save 20%</span>
+              </div>
+              <div class="flex align-items-center mb-5">
+                <span class="text-900 font-bold text-5xl">$275</span><span class="font-medium text-500 ml-2">per year</span>
+              </div>
+              <button pButton pRipple label="Proceed Yearly" icon="pi pi-arrow-right" iconPos="right" class="p-element p-ripple lg:w-full font-medium p-2 p-button p-component" style="border-radius: 6px;"></button>
+              <p class="text-sm line-height-3 mb-0 mt-5">Placerat in egestas erat imperdiet sed euismod nisi porta.</p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    <!-- TESTIMONIALS -->
+    <!-- <div class="text-center px-4 py-8 md:px-6 lg:px-8">
+        <div class="block font-bold text-3xl mb-5 text-center">Testimonials</div>
+
+        <div class="flex flex-column md:flex-row">
+          <div class="flex flex-grow-1 gap-5 mt-6 mb-4 md:mb-0 md:px-4 py-4 md:py-0">
+            <div class="shadow-2 surface-card border-round relative">
+              <img [src]="'https://i.pravatar.cc/100?img=68'" width="100" height="100" class="absolute left-50 border-circle border-3 border-white shadow-2" [ngStyle]="{'margin-left': '-50px', 'top': '-50px'}">
+              <div class="px-4 pb-4 pt-8 relative">
+                <p class="text-900 font-italic line-height-3 text-lg m-0 pb-4 border-bottom-1 surface-border">
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                </p>
+                <div class="text-900 font-semibold line-height-3 mt-4">John Doe</div>
+                <div class="text-600 line-height-3 text-sm">Awesome app</div>
+              </div>
+            </div>
+
+            <div class="shadow-2 surface-card border-round relative">
+                <img [src]="'https://i.pravatar.cc/100?img=5'" width="100" height="100" class="absolute left-50 border-circle border-3 border-white shadow-2" [ngStyle]="{'margin-left': '-50px', 'top': '-50px'}">
+                <div class="px-4 pb-4 pt-8 relative">
+                  <p class="text-900 font-italic line-height-3 text-lg m-0 pb-4 border-bottom-1 surface-border">
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  </p>
+                  <div class="text-900 font-semibold line-height-3 mt-4">John Doe</div>
+                  <div class="text-600 line-height-3 text-sm">Awesome app</div>
                 </div>
-                <div class="border-2 border-dashed surface-border surface-50 flex-auto border-round-xl"></div>
+              </div>
+
+              <div class="shadow-2 surface-card border-round relative">
+                <img [src]="'https://i.pravatar.cc/100?img=11'" width="100" height="100" class="absolute left-50 border-circle border-3 border-white shadow-2" [ngStyle]="{'margin-left': '-50px', 'top': '-50px'}">
+                <div class="px-4 pb-4 pt-8 relative">
+                  <p class="text-900 font-italic line-height-3 text-lg m-0 pb-4 border-bottom-1 surface-border">
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                  </p>
+                  <div class="text-900 font-semibold line-height-3 mt-4">John Doe</div>
+                  <div class="text-600 line-height-3 text-sm">Awesome app</div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div> -->
+    <!-- FAQ -->
+    <div class="px-4 py-6 md:px-6">
+        <span class="block font-bold text-3xl mb-5 text-center">Frequently Asked Questions</span>
+        <div class="grid grid-nogutter">
+            <div class="col-12 md:col-6 lg:col-4 p-5">
+                <div class="font-medium text-xl text-900 mb-3">How do I become a webmaster?</div>
+                <p class="text-700 line-height-3 m-0">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4 p-5">
+                <div class="font-medium text-xl text-900 mb-3">What is web traffic?</div>
+                <p class="text-700 line-height-3 m-0">Sed cras ornare arcu dui. Placerat in egestas erat imperdiet. Arcu vitae elementum curabitur vitae nunc sed velit dignissim.</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4 p-5">
+                <div class="font-medium text-xl text-900 mb-3">What is an easy way to make a website?</div>
+                <p class="text-700 line-height-3 m-0">In hac habitasse platea dictumst vestibulum. Duis ultricies lacus sed turpis tincidunt id. Imperdiet proin fermentum leo vel.</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4 p-5">
+                <div class="font-medium text-xl text-900 mb-3">How do you know if something is true?</div>
+                <p class="text-700 line-height-3 m-0">Cras ornare arcu dui vivamus arcu felis bibendum ut. Amet purus gravida quis blandit turpis cursus in hac habitasse. Leo in vitae turpis massa sed elementum tempus.</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4 p-5">
+                <div class="font-medium text-xl text-900 mb-3">What is the difference between intuition and an educated guess?</div>
+                <p class="text-700 line-height-3 m-0">Ultrices gravida dictum fusce ut placerat orci. Sed vulputate odio ut enim blandit volutpat maecenas volutpat blandit.</p>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4 p-5">
+                <div class="font-medium text-xl text-900 mb-3">What are the implications of Occam's razor principle?</div>
+                <p class="text-700 line-height-3 m-0">Risus nec feugiat in fermentum posuere urna nec. Posuere sollicitudin aliquam ultrices sagittis. Ut placerat orci nulla pellentesque dignissim enim.</p>
             </div>
         </div>
     </div>
 </div>
+    <!-- CONTACT -->
+    <div class="surface-section">
+        <div class="grid grid-nogutter">
+            <div class="col-12 md:col-6 bg-no-repeat bg-cover p-8" style="background-image: url('assets/contact.jpg');">
+                <div class="text-white text-2xl font-medium mb-6">Contact Us</div>
+                <div class="text-gray-300 line-height-3 mb-6">
+                    Still have a question? Leave us a message and we will get back to you as soon as possible.
+                </div>
+                <!-- <a class="inline-flex align-items-center text-blue-300 font-bold no-underline cursor-pointer">
+                    <span class="mr-3">View Address on Google Maps</span>
+                    <i class="pi pi-arrow-right"></i>
+                </a> -->
+                <ul class="list-none p-0 m-0 mt-6 text-white">
+                    <li class="flex align-items-center mb-3">
+                        <i class="pi pi-twitter mr-2"></i>
+                        <span>{{'@termzai'}}</span>
+                    </li>
+                    <li class="flex align-items-center">
+                        <i class="pi pi-inbox mr-2"></i>
+                        <span>{{'contact@termzai.com'}}</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 md:col-6">
+                <div class="p-fluid formgrid grid px-4 py-8 md:px-6 lg:px-8">
+                    <div class="field col-12 lg:col-6 mb-4">
+                        <input
+                            id="firstname"
+                            type="text"
+                            pInputText
+                            placeholder="First Name"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg"
+                        >
+                    </div>
+                    <div class="field col-12 lg:col-6 mb-4">
+                        <input
+                            id="lastname"
+                            type="text"
+                            pInputText
+                            placeholder="Last Name"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg"
+                        >
+                    </div>
+                    <div class="field col-12 mb-4">
+                        <input
+                            id="email"
+                            type="text"
+                            pInputText
+                            placeholder="Email"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg"
+                        >
+                    </div>
+                    <div class="field col-12 mb-4">
+                        <input
+                            id="phone"
+                            type="text"
+                            pInputText
+                            placeholder="Phone"
+                            class="p-inputtext p-component p-element py-3 px-2 text-lg"
+                        >
+                    </div>
+                    <div class="field col-12 mb-4">
+                        <textarea
+                            id="message"
+                            pInputTextarea
+                            rows="3"
+                            placeholder="Message"
+                            class="p-inputtextarea p-inputtext p-component p-element py-3 px-2 text-lg p-inputtextarea-resizable"
+                            style="height: 104px; overflow: hidden;"
+                        ></textarea>
+                    </div>
+                    <div class="col-12 text-right">
+                        <button
+                            type="button"
+                            pButton
+                            pRipple
+                            label="Submit"
+                            icon="pi pi-envelope"
+                            class="p-element p-ripple px-5 py-3 w-auto p-button p-component"
+                        >
+                            <span class="p-button-icon p-button-icon-left pi pi-envelope" aria-hidden="true"></span>
+                            <span class="p-button-label">Submit</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- <div class="bg-gray-900 px-4 py-8 md:px-6 lg:px-8">
+    <div class="grid">
+      <div class="col-12 md:col-3 flex flex-wrap justify-content-start md:mb-0 mb-3">
+        <img src="assets/logo-full-dark.png" alt="Logo" height="200">
+      </div>
+      <div class="col-12 md:col-3">
+        <div class="text-white text-lg mb-4 flex flex-wrap" style="max-width: 290px;">
+          Jacob Obrechtstraat 5, 1071 KC Amsterdam The Netherlands
+        </div>
+        <div class="text-white mb-3">
+          <i class="pi pi-phone border-round p-1 mr-2"></i>(31) 20 779 8986
+        </div>
+        <div class="text-white mb-3">
+          <i class="pi pi-inbox border-round p-1 mr-2"></i>{{'hello@alfred.co'}}
+        </div>
+      </div>
+      <div class="col-12 md:col-3 text-gray-200">
+        <div class="text-white font-bold line-height-3 mb-3">Company</div>
+        <a class="line-height-3 block cursor-pointer mb-2">About Us</a>
+        <a class="line-height-3 block cursor-pointer mb-2">News</a>
+        <a class="line-height-3 block cursor-pointer mb-2">Investor Relations</a>
+        <a class="line-height-3 block cursor-pointer mb-2">Careers</a>
+        <a class="line-height-3 block cursor-pointer">Media Kit</a>
+      </div>
+      <div class="col-12 md:col-3 text-gray-200">
+        <div class="text-white font-bold line-height-3 mb-3">Resources</div>
+        <a class="line-height-3 block cursor-pointer mb-2">Get Started</a>
+        <a class="line-height-3 block cursor-pointer mb-2">Learn</a>
+        <a class="line-height-3 block cursor-pointer">Case Studies</a>
+      </div>
+    </div>
+  </div> -->
