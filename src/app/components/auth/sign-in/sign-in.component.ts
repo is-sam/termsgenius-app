@@ -50,9 +50,15 @@ export class SignInComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.socialAuth.authState.subscribe({
+    this.socialAuth.authState
+    .pipe(takeUntil(this.isDesroyed$))
+    .subscribe({
       next: (user: SocialUser) => {
         console.log('Google user:', user);
+        if (!user) {
+          return;
+        }
+
         this.google.signIn(user.idToken).subscribe({
           next: (response: AuthLoginResponse) => {
             console.log('Google auth response:', response);
