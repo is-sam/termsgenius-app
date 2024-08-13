@@ -9,10 +9,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { authGuard } from './auth/auth.guard';
 import { SignOutComponent } from './components/auth/sign-out/sign-out.component';
 import { ProjectMessagesComponent } from './components/project-messages/project-messages.component';
-import { LandingComponent } from './components/landing/landing.component';
 
 export const routes: Routes = [
-  { path: 'landing', component: LandingComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
   { path: 'sign-up', component: SignUpComponent },
