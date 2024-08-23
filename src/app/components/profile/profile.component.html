@@ -1,0 +1,81 @@
+
+<div class="px-4 py-5 md:px-6 lg:px-8 surface-ground h-screen">
+    <div class="">
+        <div class="font-medium text-3xl text-900 mb-3">Profile</div>
+        <div class="text-500 mb-5">Review and edit your information</div>
+        <ul class="list-none p-0 m-0">
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">First Name</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1" *ngIf="user && !editFirstname">{{ user.firstname }}</div>
+                <p-skeleton *ngIf="!user" class="w-full md:w-8 md:flex-order-0 flex-order-1"></p-skeleton>
+                <input pInputText *ngIf="editFirstname" [(ngModel)]="user.firstname" type="text" placeholder="First Name" class="p-inputtext text-900 w-full md:w-8 md:flex-order-0 flex-order-1" />
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button *ngIf="!editFirstname" pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text" (click)="editFirstname = true" [disabled]="!user"></button>
+                    <button *ngIf="editFirstname" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text text-green-500" (click)="saveFirstName()"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Last Name</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1" *ngIf="user && !editLastname">{{ user.lastname }}</div>
+                <p-skeleton *ngIf="!user" class="w-full md:w-8 md:flex-order-0 flex-order-1"></p-skeleton>
+                <input pInputText *ngIf="editLastname" [(ngModel)]="user.lastname" type="text" placeholder="Last Name" class="p-inputtext text-900 w-full md:w-8 md:flex-order-0 flex-order-1" />
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button *ngIf="!editLastname" pButton pRipple label="Edit" icon="pi pi-pencil" class="p-button-text" (click)="editLastname = true" [disabled]="!user"></button>
+                    <button *ngIf="editLastname" pButton pRipple label="Save" icon="pi pi-check" class="p-button-text text-green-500" (click)="saveLastName()"></button>
+                </div>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Email</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1" *ngIf="user">{{ user.email }}</div>
+                <p-skeleton *ngIf="!user" class="w-full md:w-8 md:flex-order-0 flex-order-1"></p-skeleton>
+            </li>
+            <li class="flex align-items-center py-3 px-2 border-top-1 surface-border flex-wrap">
+                <div class="text-500 w-6 md:w-2 font-medium">Password</div>
+                <div class="text-900 w-full md:w-8 md:flex-order-0 flex-order-1" *ngIf="user">{{ user.password ? '*****' : 'No password set.' }}</div>
+                <div class="w-6 md:w-2 flex justify-content-end">
+                    <button pButton pRipple *ngIf="user" [label]="user.password ? 'Change' : 'Set'" icon="pi pi-pencil" class="p-button-text" (click)="changePasswordModal = true" [disabled]="!user"></button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<p-dialog
+    [(visible)]="changePasswordModal"
+    header="Change password"
+    [modal]="true"
+    styleClass="p-fluid"
+>
+    <ng-template pTemplate="content">
+        <form [formGroup]="signupForm">
+            <label for="password" class="block text-900 font-medium mb-2">Password</label>
+            <input pInputText formControlName="password" id="password" type="password" placeholder="Password" class="p-inputtext p-component p-element w-full" />
+            <div *ngIf="passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)" class="text-red-500">
+                <div *ngIf="passwordControl?.errors?.['required']">Password is required.</div>
+                <div *ngIf="passwordControl?.errors?.['minlength']">Password must be at least 8 characters long.</div>
+            </div>
+            <div class="mb-3"></div>
+
+            <label for="password2" class="block text-900 font-medium mb-2">Password Confirmation</label>
+            <input pInputText formControlName="repeatPassword" id="password2" type="password" placeholder="Password Confirmation" class="p-inputtext p-component p-element w-full" />
+            <div *ngIf="signupForm.hasError('notSame') && (repeatPasswordControl?.dirty || repeatPasswordControl?.touched)" class="text-red-500">
+                Passwords must match.
+            </div>
+        </form>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <p-button
+            pRipple
+            label="Cancel"
+            icon="pi pi-times"
+            [text]="true"
+            (click)="changePasswordModal = false" />
+        <p-button
+            pRipple
+            label="Save"
+            icon="pi pi-check"
+            [text]="true"
+            (click)="savePassword()"/>
+    </ng-template>
+</p-dialog>

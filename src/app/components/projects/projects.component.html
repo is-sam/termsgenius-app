@@ -1,0 +1,97 @@
+<div class="card p-6 surface-ground h-full min-h-screen">
+    <!-- <p-toolbar styleClass="mb-4 gap-2 border">
+        <ng-template pTemplate="left">
+            <p-button
+                pRipple
+                severity="primary"
+                label="New"
+                icon="pi pi-plus"
+                class="mr-2"
+                (click)="openNew()" />
+        </ng-template>
+    </p-toolbar> -->
+    <h2>Manage Documents</h2>
+
+    <p-table
+        #dt
+        [value]="(projectService.projects$ | async) ?? []"
+        [rows]="10"
+        [paginator]="true"
+        [globalFilterFields]="['title']"
+        [rowHover]="true"
+        dataKey="id"
+        [loading]="projectService.loading"
+        [styleClass]="'surface-ground'"
+        [paginatorStyleClass]="'surface-ground'"
+        [alwaysShowPaginator]="false"
+    >
+        <ng-template pTemplate="caption">
+            <div class="flex align-items-center justify-content-between">
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search"></i>
+                    <input
+                        pInputText
+                        type="text"
+                        placeholder="Search..."
+                        (input)="search($event)" />
+                </span>
+                <p-button
+                    pRipple
+                    severity="primary"
+                    label="New"
+                    icon="pi pi-plus"
+                    (click)="openNew()" />
+            </div>
+        </ng-template>
+        <ng-template pTemplate="body" let-project>
+            <tr class="surface-ground">
+                <td>
+                    {{ project.title }}
+                </td>
+                <td class="text-color-secondary text-sm w-3">
+                    {{ project.createdAt.date | date: 'medium' }}
+                </td>
+                <td class="text-right w-3">
+                    <p-button
+                        pRipple
+                        icon="pi pi-comments"
+                        class="mr-2"
+                        [rounded]="true"
+                        [text]="true"
+                        severity="info"
+                        pTooltip="Show Messages"
+                        [tooltipPosition]="'bottom'"
+                        (click)="showQuestions(project)" />
+                    <p-button
+                        pRipple
+                        icon="pi pi-pencil"
+                        class="mr-2"
+                        [rounded]="true"
+                        [text]="true"
+                        severity="success"
+                        pTooltip="Edit"
+                        [tooltipPosition]="'bottom'"
+                        (click)="editProject(project)" />
+                    <p-button
+                        pRipple
+                        icon="pi pi-trash"
+                        severity="danger"
+                        [rounded]="true"
+                        [text]="true"
+                        pTooltip="Delete"
+                        [tooltipPosition]="'bottom'"
+                        (click)="deleteProject(project)" />
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr class="surface-ground">
+                <td colspan="3">No documents.</td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <app-project-modal *ngIf="projectDialogVisible" [project]="project" (onHideDialog)="projectDialogVisible = false"></app-project-modal>
+</div>
+
+<p-confirmDialog [rejectButtonStyleClass]="'bg-gray-500'" />

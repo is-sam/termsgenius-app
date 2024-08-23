@@ -1,0 +1,53 @@
+<p-dialog
+    [(visible)]="visible"
+    header="Document Details"
+    [modal]="true"
+    styleClass="p-fluid"
+    [maximizable]="true"
+    (onHide)="hideDialog()"
+    [style]="{ width: '50rem' }">
+    <ng-template pTemplate="content">
+        <div class="field">
+            <label for="name">Title</label>
+            <input
+                type="text"
+                pInputText
+                id="title"
+                [(ngModel)]="project.title"
+                required
+                autofocus />
+            <small class="p-error" *ngIf="submitted && !project.title">
+                Title is required.
+            </small>
+        </div>
+        <div class="field">
+            <label for="description">Content</label>
+            <p-editor [(ngModel)]="project.content" *ngIf="loaded; else loading" (onTextChange)="onTextChange()">
+                <ng-template pTemplate="header">
+                </ng-template>
+            </p-editor>
+            <ng-template #loading>
+                <p-skeleton height="4rem"/>
+            </ng-template>
+            <small class="p-error" *ngIf="submitted && !project.content">
+                Content is required.
+            </small>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <p-button
+            pRipple
+            label="Cancel"
+            icon="pi pi-times"
+            [text]="true"
+            (click)="hideDialog()" />
+        <p-button
+            pRipple
+            label="Save"
+            icon="pi pi-check"
+            [text]="true"
+            (click)="saveProject()"
+            [disabled]="submitted || !loaded || !project.title || !project.content"/>
+    </ng-template>
+</p-dialog>

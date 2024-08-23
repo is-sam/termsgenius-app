@@ -1,0 +1,34 @@
+<div class="card h-screen">
+
+    <div class="messages-container surface-ground p-6">
+        <h2>Document: {{ project?.title }}</h2>
+        <p-editor [ngModel]="project.content" *ngIf="project !== null; else loading" [readonly]="true" [style]="{ height: '300px' }">
+            <ng-template pTemplate="header">
+            </ng-template>
+        </p-editor>
+        <ng-template #loading>
+            <p-skeleton height="4rem"/>
+        </ng-template>
+
+        <p-divider />
+
+        <div class="messages">
+            <p *ngFor="let message of messages" class="message-{{message.owner}}">
+                <span *ngIf="message.owner === 'user'">{{ message.text }}</span>
+                <span *ngIf="message.owner === 'ai'" [innerHTML]="marked.parse(message.text)"></span>
+            </p>
+            <p class="message-ai" *ngIf="waitingAI">...</p>
+            <p class="no-messages" *ngIf="messages.length === 0">No messages yet!</p>
+        </div>
+        <p-button *ngIf="!isScrolledToBottom" icon="pi pi-angle-double-down" class="fixed bottom-0 mb-8 align-self-center" [rounded]="true" [text]="true" size="small" (click)="scrollToBottom()"/>
+        <span #scrollTo></span>
+    </div>
+
+    <div class="new-message surface-ground">
+        <p-inputGroup class="w-full">
+            <input pInputText type="text" [(ngModel)]="message" [disabled]="waitingAI" (keypress)="onKeyPress($event)"/>
+            <button pButton (click)="addMessage()" [disabled]="message.length === 0 || waitingAI">Send</button>
+        </p-inputGroup>
+    </div>
+
+</div>

@@ -1,0 +1,41 @@
+.messages-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .messages {
+        flex: 1;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-height: 70vh;
+
+        .message-user {
+            background-color: #258686;
+            color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-left: auto;
+        }
+
+        .message-ai {
+            padding: 10px;
+            margin-right: auto;
+        }
+
+        .no-messages {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+    }
+}
+
+.new-message {
+    position: sticky;
+    bottom: 0;
+    padding: 10px;
+}

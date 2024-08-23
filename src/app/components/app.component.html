@@ -1,0 +1,11 @@
+<ng-container *ngIf="authService.isAuthenticated(); else fullScreen">
+    <app-sidebar></app-sidebar>
+    <div class="container" style="padding-left: 20rem;">
+        <router-outlet></router-outlet>
+    </div>
+</ng-container>
+<ng-template #fullScreen>
+    <router-outlet></router-outlet>
+</ng-template>
+
+<p-toast key="main" />
