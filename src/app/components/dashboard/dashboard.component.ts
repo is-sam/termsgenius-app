@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DashboardService } from '../../services/dashboard.service';
 import { CommonModule } from '@angular/common';
 import { SkeletonModule } from 'primeng/skeleton';
-import moment from 'moment';
+import { formatDistance } from "date-fns";
 
 @Component({
   selector: 'app-dashboard',
@@ -12,7 +12,6 @@ import moment from 'moment';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
-  moment: any = moment;
   data$ = this.dashboardService.data$;
 
   constructor(public dashboardService: DashboardService) {}
@@ -20,5 +19,9 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     console.log('Dashboard loaded');
     this.dashboardService.loadData();
+  }
+
+  humanizeSeconds(seconds: number) {
+    return formatDistance(0, seconds * 1000, { includeSeconds: true });
   }
 }
