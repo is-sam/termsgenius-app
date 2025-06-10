@@ -40,7 +40,7 @@ export class SignInComponent implements OnInit, OnDestroy {
   email: string = '';
   password: string = '';
 
-  private isDesroyed$ = new Subject<void>();
+  private isDestroyed$ = new Subject<void>();
 
   constructor(
     private http: HttpClient,
@@ -51,7 +51,7 @@ export class SignInComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.socialAuth.authState
-    .pipe(takeUntil(this.isDesroyed$))
+    .pipe(takeUntil(this.isDestroyed$))
     .subscribe({
       next: (user: SocialUser) => {
         console.log('Google user:', user);
@@ -73,14 +73,14 @@ export class SignInComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.isDesroyed$.next();
-    this.isDesroyed$.complete();
+    this.isDestroyed$.next();
+    this.isDestroyed$.complete();
   }
 
   signIn(): void {
     console.log('Signing in...', environment.apiEndpoint, this.email, this.password);
     this.http.post<AuthLoginResponse>(`${environment.apiEndpoint}/auth/login`, { email: this.email, password: this.password })
-      .pipe(takeUntil(this.isDesroyed$))
+      .pipe(takeUntil(this.isDestroyed$))
       .subscribe({
         next: (response: AuthLoginResponse) => {
           this.auth.login(response.token);
