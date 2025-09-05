@@ -1,27 +1,37 @@
-# TermsgeniusApp
+# TermsGenius App
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.0.7.
+TermsGenius lets you import website terms and conditions, organise them into projects and ask an AI precise questions without reading the whole document.
 
-## Development server
+## Technology stack
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- **Angular 18** with **PrimeNG** for the user interface.
+- TypeScript and RxJS.
+- Communicates with a REST API configured in the `src/environments/` files.
+- Development environment uses Node.js 20 and the Angular CLI.
 
-## Code scaffolding
+## Local development
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Install Node.js 20 and npm.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open [http://localhost:4200](http://localhost:4200) in your browser.
 
-## Build
+## Docker
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+A Docker configuration is provided for a containerised setup:
 
-## Running unit tests
+```bash
+docker compose up
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The application will be available at `http://localhost:4200`.
 
-## Running end-to-end tests
+## Configuration
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+The API endpoint and other environment settings can be adjusted in the files under `src/environments/`.
